@@ -1,0 +1,129 @@
+/* public/style.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+#chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 80%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.info {
+  padding: 10px;
+  background: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.info > div {
+  margin-bottom: 5px;
+}
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  padding: 20px;
+  background: #fff;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#typing {
+  text-align: left;
+  color: #888;
+  margin: 10px 0;
+}
+
+.text-input-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #f1f1f1;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+#messageInput {
+  flex: 3;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#sendButton {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#sendButton:hover {
+  background: #0056b3;
+}
+
+.my-message {
+  background: #5e8cfe;
+  color: whitesmoke;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  width: fit-content;
+}
+
+.other-message {
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  align-self: flex-end;
+  width: fit-content;
+}
+
+.notification {
+  background: #7a6868;
+  color: whitesmoke;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  align-self: center;
+  width: fit-content;
+}
+
+#emojiButton {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+#emojiButton:hover {
+  background: #f1f1f1;
+}
