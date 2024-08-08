@@ -1,5 +1,3 @@
-// public/script.js
-
 const socket = io();
 
 import {
@@ -10,29 +8,26 @@ import {
 
 function generateUsername() {
   const randomName = uniqueNamesGenerator({
-    dictionaries: [adjectives, animals], // Use predefined dictionaries
+    dictionaries: [adjectives, animals],
     separator: "",
-    length: 2, // Generate a name with two words
-    style: "capital", // Capitalize each word
+    length: 2,
+    style: "capital",
   });
 
   const number = Math.floor(Math.random() * 1000);
   return `${randomName}${number}`;
 }
 
-// Function to join the chat with a username
 function joinChat(username) {
   document.getElementById("username").textContent = username;
   socket.emit("join", username);
 }
 
-// Function to send a chat message
 function sendMessage(message) {
   socket.emit("chatMessage", message);
   document.getElementById("messageInput").value = "";
 }
 
-// Listen for incoming messages
 socket.on("message", (message, username) => {
   const messageContainer = document.createElement("div");
   if (username === myusername) {
@@ -67,7 +62,6 @@ socket.on("user-left", (username) => {
     document.getElementById("messages").scrollHeight;
 });
 
-// Listen for typing events
 socket.on("typing", (message) => {
   const typingContainer = document.getElementById("typing");
   typingContainer.textContent = message;
@@ -76,13 +70,11 @@ socket.on("typing", (message) => {
   }, 2000);
 });
 
-// Event listener for the send button
 document.getElementById("sendButton").addEventListener("click", () => {
   const message = document.getElementById("messageInput").value;
   sendMessage(message);
 });
 
-// Event listener for the message input to detect typing
 document.getElementById("messageInput").addEventListener("input", () => {
   socket.emit("typing");
 });
@@ -90,12 +82,10 @@ document.getElementById("messageInput").addEventListener("input", () => {
 document.getElementById("messageInput").addEventListener("keydown", (event) => {
   const message = document.getElementById("messageInput").value;
   if (event.key === "Enter") {
-    event.preventDefault(); // Prevent the default action (form submission, if any)
+    event.preventDefault();
     sendMessage(message);
   }
 });
 
-// Join the chat with a default username for simplicity
-// Generate random username
 const myusername = generateUsername();
 joinChat(myusername);
