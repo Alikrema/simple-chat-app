@@ -6,6 +6,8 @@ import {
   animals,
 } from "unique-names-generator";
 
+//* Helper Functions *//
+
 function generateUsername() {
   const randomName = uniqueNamesGenerator({
     dictionaries: [adjectives, animals],
@@ -27,6 +29,27 @@ function sendMessage(message) {
   socket.emit("chatMessage", message);
   document.getElementById("messageInput").value = "";
 }
+
+//* Event Listeners *//
+
+document.getElementById("sendButton").addEventListener("click", () => {
+  const message = document.getElementById("messageInput").value;
+  sendMessage(message);
+});
+
+document.getElementById("messageInput").addEventListener("input", () => {
+  socket.emit("typing");
+});
+
+document.getElementById("messageInput").addEventListener("keydown", (event) => {
+  const message = document.getElementById("messageInput").value;
+  if (event.key === "Enter") {
+    event.preventDefault();
+    sendMessage(message);
+  }
+});
+
+//* Socket Events *//
 
 socket.on("message", (message, username) => {
   const messageContainer = document.createElement("div");
@@ -70,22 +93,7 @@ socket.on("typing", (message) => {
   }, 2000);
 });
 
-document.getElementById("sendButton").addEventListener("click", () => {
-  const message = document.getElementById("messageInput").value;
-  sendMessage(message);
-});
-
-document.getElementById("messageInput").addEventListener("input", () => {
-  socket.emit("typing");
-});
-
-document.getElementById("messageInput").addEventListener("keydown", (event) => {
-  const message = document.getElementById("messageInput").value;
-  if (event.key === "Enter") {
-    event.preventDefault();
-    sendMessage(message);
-  }
-});
+//* Initialize Chat *//
 
 const myusername = generateUsername();
 joinChat(myusername);
