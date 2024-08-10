@@ -9,27 +9,7 @@ const io = socketIo(server);
 app.use(express.static("public"));
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
-
-  socket.on("join", (username) => {
-    socket.username = username;
-    socket.broadcast.emit("new-join", `${username} has joined the chat`);
-  });
-
-  socket.on("chatMessage", (msg) => {
-    io.emit("message", msg, socket.username);
-  });
-
-  socket.on("typing", () => {
-    console.log(`${socket.username} is typing...`);
-    socket.broadcast.emit("typing", `${socket.username} is typing...`);
-  });
-
-  socket.on("disconnect", () => {
-    if (socket.username) {
-      io.emit("user-left", socket.username);
-    }
-  });
+  //TODO: implement server-side event handlers
 });
 
 const PORT = process.env.PORT || 3000;

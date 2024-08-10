@@ -51,47 +51,7 @@ document.getElementById("messageInput").addEventListener("keydown", (event) => {
 
 //* Socket Events *//
 
-socket.on("message", (message, username) => {
-  const messageContainer = document.createElement("div");
-  if (username === myusername) {
-    message = `You: ${message}`;
-    messageContainer.className = "my-message";
-  } else {
-    message = `${username}: ${message}`;
-    messageContainer.className = "other-message";
-  }
-  messageContainer.textContent = message;
-  document.getElementById("messages").appendChild(messageContainer);
-  document.getElementById("messages").scrollTop =
-    document.getElementById("messages").scrollHeight;
-});
-
-socket.on("new-join", (message) => {
-  const messageContainer = document.createElement("div");
-  messageContainer.className = "notification";
-  messageContainer.textContent = message;
-  document.getElementById("messages").appendChild(messageContainer);
-  document.getElementById("messages").scrollTop =
-    document.getElementById("messages").scrollHeight;
-});
-
-socket.on("user-left", (username) => {
-  const message = `${username} has left the chat`;
-  const messageContainer = document.createElement("div");
-  messageContainer.className = "notification";
-  messageContainer.textContent = message;
-  document.getElementById("messages").appendChild(messageContainer);
-  document.getElementById("messages").scrollTop =
-    document.getElementById("messages").scrollHeight;
-});
-
-socket.on("typing", (message) => {
-  const typingContainer = document.getElementById("typing");
-  typingContainer.textContent = message;
-  setTimeout(() => {
-    typingContainer.textContent = "";
-  }, 2000);
-});
+//TODO: implement client-side event handlers
 
 //* Initialize Chat *//
 
